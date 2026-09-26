@@ -15,10 +15,10 @@ export default {
     },
     extend: {
       colors: {
-        // Near-black base + dark surfaces
-        base: '#07070B',
-        surface: '#0E0E15',
-        panel: '#11111B',
+        // Neutral near-black base + editorial dark surfaces
+        base: '#0A0A0B',
+        surface: '#141416',
+        panel: '#1A1A1D',
         'navy-black': '#0B1020',
         // SANLINK brand accent (orange) — CTAs & highlights
         brand: {

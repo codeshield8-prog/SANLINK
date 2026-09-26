@@ -24,7 +24,7 @@ export default function AboutSection({ showCta = true }) {
                 <span className="h-2.5 w-2.5 rounded-full bg-brand-500/80" />
               </div>
               <span className="inline-flex items-center gap-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-muted/70">
-                <FiActivity className="text-electric-400" /> Network
+                <FiActivity className="text-brand-400" /> Network
               </span>
             </div>
 

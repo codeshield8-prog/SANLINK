@@ -37,7 +37,7 @@ export default function ITSection() {
                   key={cap.label}
                   className="gradient-border group flex items-center gap-3 rounded-xl border border-white/[0.07] bg-surface/60 px-4 py-3 transition-colors hover:bg-surface"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-electric-400">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-brand-400">
                     <Icon className="text-base" />
                   </span>
                   <span className="text-sm font-medium text-white/90">{cap.label}</span>
@@ -66,8 +66,8 @@ export default function ITSection() {
                     <span className="h-2.5 w-2.5 rounded-full bg-brand-500/70" />
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-electric-500/30 bg-electric-500/10 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-widest text-electric-300">
-                  <span className="h-1.5 w-1.5 animate-ticker rounded-full bg-electric-400" aria-hidden="true" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-widest text-brand-400">
+                  <span className="h-1.5 w-1.5 animate-ticker rounded-full bg-brand-400" aria-hidden="true" />
                   Operational
                 </span>
               </div>
@@ -75,7 +75,7 @@ export default function ITSection() {
               {/* KPI tiles (qualitative) */}
               <div className="mt-4 grid grid-cols-2 gap-3" aria-hidden="true">
                 <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-3.5">
-                  <div className="flex items-center gap-2 text-electric-400">
+                  <div className="flex items-center gap-2 text-brand-400">
                     <FiActivity className="text-sm" />
                     <span className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted">Systems</span>
                   </div>
@@ -118,7 +118,7 @@ export default function ITSection() {
                 {[40, 62, 48, 78, 56, 90, 68, 82, 60, 74].map((h, i) => (
                   <div
                     key={i}
-                    className="flex-1 rounded-t bg-gradient-to-t from-electric-600/30 to-brand-400/80 animate-float"
+                    className="flex-1 rounded-t bg-gradient-to-t from-brand-600/30 to-brand-400/80 animate-float"
                     style={{ height: `${h}%`, minHeight: '10px', animationDelay: `${i * 0.15}s` }}
                   />
                 ))}

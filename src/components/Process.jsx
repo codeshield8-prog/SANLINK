@@ -23,7 +23,7 @@ export default function Process() {
           {/* horizontal connector (desktop) */}
           <div className="pointer-events-none absolute inset-x-0 top-9 hidden h-px lg:block" aria-hidden="true">
             <div className="h-full w-full bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
-            <div className="absolute top-0 h-px w-32 bg-gradient-to-r from-transparent via-electric-400 to-transparent animate-marquee" style={{ animationDuration: '4s' }} />
+            <div className="absolute top-0 h-px w-32 bg-gradient-to-r from-transparent via-brand-400 to-transparent animate-marquee" style={{ animationDuration: '4s' }} />
           </div>
           {/* vertical connector (mobile) */}
           <div className="pointer-events-none absolute bottom-0 left-[2.25rem] top-0 w-px bg-gradient-to-b from-brand-500/40 via-white/10 to-transparent lg:hidden" aria-hidden="true" />

@@ -4,10 +4,9 @@
 
 @layer base {
   :root {
-    --base: #07070b;
+    --base: #0a0a0b;
     --brand: #ff6b1a;
     --brand-warm: #ff8a3d;
-    --electric: #38bdf8;
   }
 
   html {
@@ -23,26 +22,26 @@
     position: relative;
   }
 
-  /* Global film-grain / noise overlay for a premium, non-flat surface */
+  /* Subtle film-grain for a premium, non-flat surface */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::selection {
-    background-color: rgba(255, 107, 26, 0.25);
+    background-color: rgba(255, 107, 26, 0.28);
     color: #ffffff;
   }
 
   :where(a, button, input, textarea, select):focus-visible {
     outline: 2px solid var(--brand);
     outline-offset: 2px;
-    border-radius: 0.4rem;
+    border-radius: 0.35rem;
   }
 
   h1, h2, h3, h4 {
@@ -54,21 +53,20 @@
     text-wrap: pretty;
   }
 
-  /* Custom dark scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #0b0a12;
+    background: #0a0a0b;
   }
   ::-webkit-scrollbar-thumb {
-    background: #23232f;
+    background: #26262a;
     border-radius: 9999px;
-    border: 2px solid #0b0a12;
+    border: 2px solid #0a0a0b;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #313142;
+    background: #34343a;
   }
 }
 
@@ -77,64 +75,48 @@
     @apply py-20 sm:py-24 lg:py-28;
   }
 
-  /* keep content above the grain overlay */
   .container {
     position: relative;
     z-index: 2;
   }
 
+  /* Uppercase kicker / eyebrow */
   .eyebrow {
-    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-brand-500;
+    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.24em] text-brand-500;
   }
 
-  /* Buttons */
+  /* Buttons — flat, editorial */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold
       transition-all duration-200 focus-visible:outline-none;
   }
 
   .btn-primary {
-    @apply btn relative overflow-hidden text-white shadow-glow-brand hover:-translate-y-0.5 active:translate-y-0;
-    background-image: linear-gradient(120deg, #ff6b1a 0%, #ff8a3d 100%);
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
-    transform: translateX(-120%);
-    transition: transform 0.6s ease;
-  }
-  .btn-primary:hover::after {
-    transform: translateX(120%);
-  }
-  .btn-primary:hover {
-    background-image: linear-gradient(120deg, #ff7a2e 0%, #ff9a55 100%);
+    @apply btn bg-brand-500 text-white hover:bg-brand-400 hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply btn border border-white/12 bg-white/[0.04] text-white backdrop-blur-sm
-      hover:border-white/25 hover:bg-white/[0.08] hover:-translate-y-0.5;
+    @apply btn border border-white/15 bg-transparent text-white hover:border-white/40 hover:bg-white/[0.04] hover:-translate-y-0.5;
   }
 
   .btn-ghost {
     @apply btn text-white hover:text-brand-400;
   }
 
-  /* Dark surface card */
+  /* Flat dark surface card with a hairline */
   .card {
-    @apply rounded-2xl border border-white/[0.07] bg-surface/80 backdrop-blur-sm;
+    @apply rounded-xl border border-white/10 bg-surface;
   }
 
   /* Glass panel — layered translucency for premium consoles */
   .glass {
     @apply rounded-2xl border border-white/10 backdrop-blur-xl;
     background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-      rgba(14, 14, 21, 0.6);
+      linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
+      rgba(20, 20, 22, 0.62);
   }
 
-  /* Gradient hairline border that appears on hover */
+  /* Orange hairline border that fades in on hover (mono) */
   .gradient-border {
     position: relative;
   }
@@ -144,7 +126,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(255, 107, 26, 0.7), rgba(56, 189, 248, 0.5), rgba(139, 92, 246, 0.5));
+    background: linear-gradient(135deg, rgba(255, 138, 61, 0.7), rgba(255, 107, 26, 0.25));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -156,7 +138,7 @@
     opacity: 1;
   }
 
-  /* Pointer-following spotlight (needs --mx / --my set via JS or defaults center) */
+  /* Pointer-following orange spotlight (defaults to top-center) */
   .spotlight::after {
     content: '';
     position: absolute;
@@ -164,7 +146,7 @@
     border-radius: inherit;
     background: radial-gradient(
       340px circle at var(--mx, 50%) var(--my, 0%),
-      rgba(255, 107, 26, 0.14),
+      rgba(255, 107, 26, 0.12),
       transparent 60%
     );
     opacity: 0;
@@ -175,8 +157,18 @@
     opacity: 1;
   }
 
+  /* Hairline helpers */
+  .hairline {
+    @apply border border-white/10;
+  }
+
+  /* Numbered index label */
+  .num {
+    @apply font-display text-sm font-bold tracking-[0.2em] text-white/25;
+  }
+
   .divider-line {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+    @apply h-px w-full bg-white/10;
   }
 
   .link-underline {
@@ -186,14 +178,13 @@
 
   /* Small technical status chip */
   .chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-white/85;
   }
 }
 
 @layer utilities {
-  /* Futuristic accent gradient — violet → electric, for rare highlights */
   .text-gradient {
-    background-image: linear-gradient(110deg, #8b5cf6 0%, #38bdf8 100%);
+    background-image: linear-gradient(110deg, #ff6b1a 0%, #ff8a3d 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -209,16 +200,16 @@
   /* Faint technical grid on the dark base */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 
   .bg-grid-fine {
     background-image:
       linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-size: 34px 34px;
   }
 
   .bg-grid-fade {
@@ -227,11 +218,10 @@
   }
 
   .bg-dots {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 26px 26px;
   }
 
-  /* Masks for edge fades (used on marquees) */
   .mask-x-fade {
     -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);

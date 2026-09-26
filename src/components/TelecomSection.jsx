@@ -31,7 +31,7 @@ export default function TelecomSection() {
           <div className="relative rounded-3xl border border-white/[0.07] bg-surface/40 p-10 backdrop-blur-sm">
             {/* animated flow line */}
             <div className="pointer-events-none absolute inset-x-16 top-[6.5rem] h-px" aria-hidden="true">
-              <div className="h-full w-full bg-gradient-to-r from-brand-500/20 via-electric-500/40 to-violet-500/20" />
+              <div className="h-full w-full bg-gradient-to-r from-brand-500/20 via-brand-500/40 to-brand-500/20" />
               <div
                 className="absolute top-0 h-px w-24 bg-gradient-to-r from-transparent via-white to-transparent animate-marquee"
                 style={{ animationDuration: '3.5s' }}
@@ -55,7 +55,7 @@ export default function TelecomSection() {
                     key={c.label}
                     className="gradient-border group flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-panel/60 px-5 py-4 transition-colors hover:bg-panel"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-electric-400">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] text-brand-400">
                       <Icon className="text-lg" />
                     </span>
                     <div>
@@ -81,7 +81,7 @@ export default function TelecomSection() {
                 const Icon = c.icon;
                 return (
                   <div key={c.label} className="flex flex-col items-center gap-2 rounded-2xl border border-white/[0.07] bg-surface/70 px-2 py-4 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-electric-400">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-brand-400">
                       <Icon className="text-lg" />
                     </span>
                     <span className="text-xs font-semibold text-white">{c.label}</span>
@@ -119,7 +119,7 @@ function PipeStage({ icon: Icon, label, caption, highlight = false }) {
 function Arrow() {
   return (
     <div className="flex h-20 items-center justify-center" aria-hidden="true">
-      <FiArrowRight className="text-xl text-electric-400/70" />
+      <FiArrowRight className="text-xl text-brand-400/70" />
     </div>
   );
 }
@@ -133,7 +133,7 @@ function FlowNode({ icon: Icon, label, caption, highlight = false }) {
     >
       <span
         className={`flex h-12 w-12 items-center justify-center rounded-xl ${
-          highlight ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white' : 'border border-white/10 bg-white/[0.04] text-electric-400'
+          highlight ? 'bg-gradient-to-br from-brand-500 to-brand-600 text-white' : 'border border-white/10 bg-white/[0.04] text-brand-400'
         }`}
       >
         <Icon className="text-xl" />
@@ -149,7 +149,7 @@ function FlowNode({ icon: Icon, label, caption, highlight = false }) {
 function Connector() {
   return (
     <div className="flex h-10 items-center justify-center" aria-hidden="true">
-      <div className="relative h-full w-px bg-gradient-to-b from-brand-500/50 to-electric-500/30">
+      <div className="relative h-full w-px bg-gradient-to-b from-brand-500/50 to-brand-500/30">
         <FiArrowDown className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-xs text-brand-400" />
       </div>
     </div>
