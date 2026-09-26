@@ -10,55 +10,39 @@ export default {
         lg: '2rem',
       },
       screens: {
-        '2xl': '1240px',
+        '2xl': '1280px',
       },
     },
     extend: {
       colors: {
-        // Primary — deep midnight navy. Hero, CTA bands, footer, headings.
-        navy: {
-          950: '#070c17',
-          900: '#0b1424',
-          800: '#101d33',
-          700: '#182a44',
-          600: '#223a5c',
-          500: '#33507a',
-        },
-        // Secondary — professional blue. CTAs, links, active states.
-        royal: {
-          50: '#eef4ff',
-          100: '#dbe7fe',
-          200: '#bdd3fd',
-          300: '#8fb3fb',
-          400: '#5b8bf5',
-          500: '#3667ec',
-          600: '#2450d4',
-          700: '#1e40ad',
-          800: '#1d388c',
-          900: '#1c3374',
-        },
-        // Bright blue — icon fills & small highlights (used with restraint).
+        // Near-black base + dark surfaces
+        base: '#07070B',
+        surface: '#0E0E15',
+        panel: '#11111B',
+        'navy-black': '#0B1020',
+        // SANLINK brand accent (orange) — CTAs & highlights
         brand: {
-          400: '#3ea0ff',
-          500: '#1a8bff',
-          600: '#0b73e6',
+          400: '#FF8A3D',
+          500: '#FF6B1A',
+          600: '#F5560A',
+          700: '#d94708',
         },
-        // Accent — controlled electric cyan. Thin lines, dots, tiny details only.
-        cyan: {
-          400: '#38d0e6',
-          500: '#12b5cf',
-          600: '#0e97ad',
+        // Electric-blue technology accent (secondary — lines, glows, data)
+        electric: {
+          300: '#7DD3FC',
+          400: '#38BDF8',
+          500: '#0EA5E9',
+          600: '#0284C7',
         },
+        // Muted cool gray for secondary text
+        muted: '#9AA3B2',
+        // Note: indigo (#6366F1), violet (#8B5CF6) and magenta (#D946EF)
+        // use Tailwind's built-in scales — no overrides needed.
       },
       fontFamily: {
         display: ['Manrope', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-      fontSize: {
-        // Tighter display sizes with controlled line-height for headings
-        'display-sm': ['2rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'display-md': ['2.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-lg': ['3.5rem', { lineHeight: '1.05', letterSpacing: '-0.025em' }],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       opacity: {
         8: '0.08',
@@ -66,37 +50,81 @@ export default {
         15: '0.15',
       },
       boxShadow: {
-        // Fine, enterprise-grade shadows — subtle, never heavy
-        soft: '0 1px 2px rgba(15, 23, 42, 0.04)',
-        card: '0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 28px -20px rgba(15, 23, 42, 0.22)',
-        lift: '0 10px 30px -14px rgba(36, 80, 212, 0.32)',
-        navbar: '0 1px 0 rgba(15, 23, 42, 0.05), 0 10px 30px -24px rgba(15, 23, 42, 0.25)',
+        glow: '0 0 0 1px rgba(255,255,255,0.04), 0 18px 50px -25px rgba(99,102,241,0.5)',
+        'glow-brand': '0 10px 40px -12px rgba(255,107,26,0.5)',
+        'glow-electric': '0 10px 40px -14px rgba(56,189,248,0.45)',
+        card: '0 1px 2px rgba(0,0,0,0.4), 0 24px 60px -40px rgba(0,0,0,0.9)',
+        'card-lift': '0 1px 2px rgba(0,0,0,0.4), 0 40px 80px -50px rgba(0,0,0,1)',
       },
-      maxWidth: {
-        content: '1200px',
+      backgroundImage: {
+        'radial-fade': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
       },
       keyframes: {
         'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(18px)' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-9px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-16px)' },
+        },
+        'pulse-node': {
+          '0%, 100%': { opacity: '0.5', transform: 'scale(0.85)' },
+          '50%': { opacity: '1', transform: 'scale(1.1)' },
         },
         'pulse-ring': {
-          '0%': { transform: 'scale(0.9)', opacity: '0.6' },
-          '100%': { transform: 'scale(1.5)', opacity: '0' },
+          '0%': { transform: 'scale(0.8)', opacity: '0.6' },
+          '100%': { transform: 'scale(1.7)', opacity: '0' },
         },
         dash: {
-          to: { 'stroke-dashoffset': '-240' },
+          to: { 'stroke-dashoffset': '-260' },
+        },
+        'glow-breathe': {
+          '0%, 100%': { opacity: '0.5' },
+          '50%': { opacity: '0.85' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+        spin_slow: {
+          to: { transform: 'rotate(360deg)' },
+        },
+        'spin-reverse': {
+          to: { transform: 'rotate(-360deg)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        aurora: {
+          '0%, 100%': { transform: 'translate(0,0) scale(1)' },
+          '33%': { transform: 'translate(3%, -4%) scale(1.08)' },
+          '66%': { transform: 'translate(-3%, 3%) scale(0.96)' },
+        },
+        ticker: {
+          '0%, 100%': { opacity: '0.35' },
+          '50%': { opacity: '1' },
         },
       },
       animation: {
         'fade-up': 'fade-up 0.6s cubic-bezier(0.22,1,0.36,1) forwards',
         float: 'float 7s ease-in-out infinite',
-        'pulse-ring': 'pulse-ring 3.2s ease-out infinite',
-        dash: 'dash 7s linear infinite',
+        'float-slow': 'float-slow 9s ease-in-out infinite',
+        'pulse-node': 'pulse-node 3s ease-in-out infinite',
+        'pulse-ring': 'pulse-ring 3.4s ease-out infinite',
+        dash: 'dash 8s linear infinite',
+        'glow-breathe': 'glow-breathe 6s ease-in-out infinite',
+        shimmer: 'shimmer 3s linear infinite',
+        'spin-slow': 'spin_slow 26s linear infinite',
+        'spin-reverse': 'spin-reverse 34s linear infinite',
+        marquee: 'marquee 32s linear infinite',
+        aurora: 'aurora 18s ease-in-out infinite',
+        ticker: 'ticker 2.4s ease-in-out infinite',
       },
     },
   },

@@ -4,114 +4,244 @@
 
 @layer base {
   :root {
-    --navy: #0b1424;
-    --royal: #2450d4;
-    --accent: #12b5cf;
+    --base: #07070b;
+    --brand: #ff6b1a;
+    --brand-warm: #ff8a3d;
+    --electric: #38bdf8;
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
 
   body {
-    @apply bg-white font-sans text-[15px] leading-relaxed text-slate-600 antialiased;
+    @apply bg-base font-sans text-[15px] leading-relaxed text-muted antialiased;
+    position: relative;
+  }
+
+  /* Global film-grain / noise overlay for a premium, non-flat surface */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   ::selection {
-    background-color: rgba(36, 80, 212, 0.16);
-    color: #0b1424;
+    background-color: rgba(255, 107, 26, 0.25);
+    color: #ffffff;
   }
 
   :where(a, button, input, textarea, select):focus-visible {
-    outline: 2px solid var(--royal);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
-    border-radius: 0.375rem;
+    border-radius: 0.4rem;
   }
 
   h1, h2, h3, h4 {
-    @apply font-display font-bold tracking-tight text-navy-900;
+    @apply font-display font-bold tracking-tight text-white;
     text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
   }
+
+  /* Custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b0a12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #23232f;
+    border-radius: 9999px;
+    border: 2px solid #0b0a12;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #313142;
+  }
 }
 
 @layer components {
-  /* Consistent vertical rhythm */
   .section {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  /* keep content above the grain overlay */
+  .container {
+    position: relative;
+    z-index: 2;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-royal-600;
+    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.22em] text-brand-500;
   }
 
-  /* Buttons — restrained radius, refined weight, subtle motion */
+  /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold
       transition-all duration-200 focus-visible:outline-none;
   }
 
   .btn-primary {
-    @apply btn bg-royal-600 text-white shadow-lift hover:bg-royal-700 hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn relative overflow-hidden text-white shadow-glow-brand hover:-translate-y-0.5 active:translate-y-0;
+    background-image: linear-gradient(120deg, #ff6b1a 0%, #ff8a3d 100%);
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
+  .btn-primary:hover {
+    background-image: linear-gradient(120deg, #ff7a2e 0%, #ff9a55 100%);
   }
 
   .btn-secondary {
-    @apply btn border border-slate-300 bg-white text-navy-800 hover:border-royal-400 hover:text-royal-700 hover:-translate-y-0.5;
+    @apply btn border border-white/12 bg-white/[0.04] text-white backdrop-blur-sm
+      hover:border-white/25 hover:bg-white/[0.08] hover:-translate-y-0.5;
   }
 
-  .btn-dark {
-    @apply btn bg-white text-navy-900 hover:bg-royal-50 hover:-translate-y-0.5;
+  .btn-ghost {
+    @apply btn text-white hover:text-brand-400;
   }
 
-  .btn-ghost-light {
-    @apply btn border border-white/20 bg-white/[0.06] text-white hover:bg-white/[0.12] hover:-translate-y-0.5;
-  }
-
+  /* Dark surface card */
   .card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-soft;
+    @apply rounded-2xl border border-white/[0.07] bg-surface/80 backdrop-blur-sm;
+  }
+
+  /* Glass panel — layered translucency for premium consoles */
+  .glass {
+    @apply rounded-2xl border border-white/10 backdrop-blur-xl;
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+      rgba(14, 14, 21, 0.6);
+  }
+
+  /* Gradient hairline border that appears on hover */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 107, 26, 0.7), rgba(56, 189, 248, 0.5), rgba(139, 92, 246, 0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Pointer-following spotlight (needs --mx / --my set via JS or defaults center) */
+  .spotlight::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 0%),
+      rgba(255, 107, 26, 0.14),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .spotlight:hover::after {
+    opacity: 1;
+  }
+
+  .divider-line {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
   }
 
   .link-underline {
-    @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-current
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-brand-500
       after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Small technical status chip */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm;
   }
 }
 
 @layer utilities {
-  .text-accent {
-    color: var(--accent);
+  /* Futuristic accent gradient — violet → electric, for rare highlights */
+  .text-gradient {
+    background-image: linear-gradient(110deg, #8b5cf6 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  /* Subtle enterprise grids */
-  .bg-grid-dark {
+  .text-gradient-brand {
+    background-image: linear-gradient(110deg, #ff6b1a 0%, #ff8a3d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Faint technical grid on the dark base */
+  .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
-  .bg-grid-light {
+  .bg-grid-fine {
     background-image:
-      linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
-    background-size: 52px 52px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  .bg-dots-dark {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 22px 22px;
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  /* Masks for edge fades (used on marquees) */
+  .mask-x-fade {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
   }
 }
 
-/* Scroll-reveal — hidden until observed, then eased in. */
+/* Scroll-reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(20px);
   transition:
     opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);

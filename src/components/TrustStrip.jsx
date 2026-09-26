@@ -1,24 +1,38 @@
+import Reveal from './Reveal.jsx';
 import { trustStrip } from '../data.js';
 
 /**
- * Clean horizontal trust/value strip shown directly below the hero.
- * Uppercase labels with subtle vertical separators.
+ * Premium trust/intro strip after the hero — a heading over a slow,
+ * infinite marquee of capability labels with edge fades, giving the
+ * dark base a subtle sense of motion without noise.
  */
 export default function TrustStrip() {
+  const items = [...trustStrip, 'Cloud Telephony', 'OTP & Messaging', 'Automation'];
+  const loop = [...items, ...items];
+
   return (
-    <div className="border-b border-slate-200 bg-slate-50">
-      <div className="container">
-        <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 sm:justify-between sm:gap-x-4 sm:py-6">
-          {trustStrip.map((item, i) => (
-            <li key={item} className="flex items-center gap-8 sm:gap-4">
-              <span className="transition-colors hover:text-navy-800">{item}</span>
-              {i < trustStrip.length - 1 && (
-                <span className="hidden h-3.5 w-px bg-slate-300 sm:block" aria-hidden="true" />
-              )}
-            </li>
-          ))}
-        </ul>
+    <section className="relative overflow-hidden bg-base py-14 sm:py-16">
+      <div className="container relative">
+        <Reveal className="text-center">
+          <p className="text-sm font-medium uppercase tracking-[0.24em] text-muted/70">
+            Technology Built for a Connected World
+          </p>
+        </Reveal>
+
+        <Reveal delay={80} className="mask-x-fade mt-8 overflow-hidden">
+          <ul className="flex w-max animate-marquee items-center gap-10 sm:gap-14">
+            {loop.map((item, i) => (
+              <li key={`${item}-${i}`} className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500 shadow-[0_0_10px_2px_rgba(255,107,26,0.5)]" aria-hidden="true" />
+                <span className="whitespace-nowrap text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
-    </div>
+      <div className="divider-line mt-14" />
+    </section>
   );
 }

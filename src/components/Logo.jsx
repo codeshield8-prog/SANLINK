@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/sanlink-logo.webp';
+import logoFull from '../assets/sanlink-logo.webp';
+import logoMark from '../assets/sanlink-mark.webp';
 import { company } from '../data.js';
 
 /**
- * Official SANLINK logo. Renders the exact provided asset — never
- * recoloured or restyled. `variant="footer"` sits on the dark navy
- * footer, so we drop it onto a subtle white plate to keep the mark
- * crisp and legible without altering the artwork itself.
+ * Official SANLINK logo — used exactly as provided (no recolour, no
+ * filters). The artwork sits on a clean white plate so the orange +
+ * charcoal logo stays crisp and highly visible on the dark site.
+ *
+ * variant: 'default' (navbar) | 'footer' | 'mark' (compact icon plate)
  */
 export default function Logo({ variant = 'default', className = '' }) {
-  const onDark = variant === 'footer';
+  const isMark = variant === 'mark';
+  const src = isMark ? logoMark : logoFull;
 
   return (
     <Link
@@ -17,17 +20,15 @@ export default function Logo({ variant = 'default', className = '' }) {
       aria-label={`${company.legalName} — home`}
       className={`inline-flex items-center ${className}`}
     >
-      <img
-        src={logo}
-        alt={`${company.legalName} logo`}
-        width="200"
-        height="60"
-        className={
-          onDark
-            ? 'h-11 w-auto rounded-md bg-white px-3 py-1.5 shadow-sm sm:h-12'
-            : 'h-9 w-auto sm:h-10'
-        }
-      />
+      <span className="inline-flex items-center rounded-xl bg-white px-3 py-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.25)] ring-1 ring-white/10">
+        <img
+          src={src}
+          alt={`${company.legalName} logo`}
+          width={isMark ? 40 : 150}
+          height={40}
+          className={isMark ? 'h-7 w-auto' : 'h-7 w-auto sm:h-8'}
+        />
+      </span>
     </Link>
   );
 }

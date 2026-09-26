@@ -10,15 +10,13 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
+  useEffect(() => setOpen(false), [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -28,83 +26,85 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-slate-200 bg-white/90 shadow-navbar backdrop-blur-md'
-          : 'border-b border-transparent bg-white/80 backdrop-blur-sm'
-      }`}
-    >
-      <nav className="container flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
-        <Logo />
-
-        {/* Desktop navigation */}
-        <ul className="hidden items-center gap-9 lg:flex">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `link-underline text-[0.9rem] font-medium transition-colors duration-200 ${
-                    isActive ? 'text-royal-700 after:w-full' : 'text-slate-600 hover:text-navy-900'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden lg:block">
-          <Link to="/contact" className="btn-primary px-5 py-2.5">
-            Talk to Us
-            <FiArrowUpRight className="text-base" aria-hidden="true" />
-          </Link>
-        </div>
-
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-navy-800 transition-colors hover:bg-slate-50 lg:hidden"
+    <header className="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-4">
+      <div className="container">
+        <nav
+          className={`flex items-center justify-between gap-4 rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:px-5 ${
+            scrolled
+              ? 'border-white/10 bg-base/80 shadow-card backdrop-blur-xl'
+              : 'border-white/[0.06] bg-white/[0.02] backdrop-blur-md'
+          }`}
         >
-          {open ? <FiX className="text-xl" /> : <FiMenu className="text-xl" />}
-        </button>
-      </nav>
+          <Logo />
 
-      {/* Mobile menu */}
-      <div
-        className={`overflow-hidden border-t border-slate-200 bg-white transition-[max-height,opacity] duration-300 lg:hidden ${
-          open ? 'max-h-[26rem] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <ul className="container flex flex-col gap-1 py-4">
-          {navLinks.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `block rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                    isActive ? 'bg-royal-50 text-royal-700' : 'text-navy-800 hover:bg-slate-50'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            </li>
-          ))}
-          <li className="mt-2">
-            <Link to="/contact" className="btn-primary w-full">
-              Talk to Us
-              <FiArrowUpRight aria-hidden="true" />
+          {/* Desktop nav */}
+          <ul className="hidden items-center gap-8 lg:flex">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `link-underline text-[0.9rem] font-medium transition-colors duration-200 ${
+                      isActive ? 'text-white after:w-full' : 'text-muted hover:text-white'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden lg:block">
+            <Link to="/contact" className="btn-primary px-5 py-2.5">
+              Talk to an Expert
+              <FiArrowUpRight className="text-base" aria-hidden="true" />
             </Link>
-          </li>
-        </ul>
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white transition-colors hover:bg-white/5 lg:hidden"
+          >
+            {open ? <FiX className="text-xl" /> : <FiMenu className="text-xl" />}
+          </button>
+        </nav>
+
+        {/* Mobile menu */}
+        <div
+          className={`mt-2 overflow-hidden rounded-2xl border border-white/10 bg-base/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 lg:hidden ${
+            open ? 'max-h-[30rem] opacity-100' : 'max-h-0 border-transparent opacity-0'
+          }`}
+        >
+          <ul className="flex flex-col gap-1 p-4">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                      isActive ? 'bg-white/5 text-brand-400' : 'text-muted hover:bg-white/5 hover:text-white'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+            <li className="mt-2">
+              <Link to="/contact" className="btn-primary w-full">
+                Talk to an Expert
+                <FiArrowUpRight aria-hidden="true" />
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   );

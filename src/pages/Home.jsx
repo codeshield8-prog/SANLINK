@@ -3,14 +3,18 @@ import { FiArrowRight } from 'react-icons/fi';
 import Hero from '../components/Hero.jsx';
 import TrustStrip from '../components/TrustStrip.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
-import TrustCards from '../components/TrustCards.jsx';
 import AboutSection from '../components/AboutSection.jsx';
 import ServicesGrid from '../components/ServicesGrid.jsx';
+import TelecomSection from '../components/TelecomSection.jsx';
+import ITSection from '../components/ITSection.jsx';
+import KeyFeatures from '../components/KeyFeatures.jsx';
 import IndustryCard from '../components/IndustryCard.jsx';
 import Reveal from '../components/Reveal.jsx';
-import WhyChooseUs from '../components/WhyChooseUs.jsx';
 import Capabilities from '../components/Capabilities.jsx';
+import WhyChooseUs from '../components/WhyChooseUs.jsx';
 import Process from '../components/Process.jsx';
+import EverythingConnected from '../components/EverythingConnected.jsx';
+import FAQ from '../components/FAQ.jsx';
 import CTASection from '../components/CTASection.jsx';
 import { industries } from '../data.js';
 
@@ -20,57 +24,49 @@ export default function Home() {
       <Hero />
       <TrustStrip />
 
-      {/* Intro */}
-      <section className="section bg-white">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Why Sanlink"
-            title="Technology That Keeps Your Business Connected"
-            text="We combine telecommunications and information technology to deliver dependable solutions that support modern business communication and digital operations."
-          />
-          <div className="mt-12">
-            <TrustCards />
-          </div>
-        </div>
+      {/* About */}
+      <section className="section bg-base">
+        <AboutSection />
       </section>
 
-      {/* Services */}
-      <section className="section bg-slate-50">
+      {/* Solutions */}
+      <section className="section bg-base">
         <div className="container">
           <SectionHeading
-            eyebrow="What We Do"
+            eyebrow="Solutions"
             title="Technology & Communication Solutions"
-            text="Solutions designed to help businesses communicate, connect and operate in a digitally connected world."
+            text="An elegant architecture of solutions designed to help businesses communicate, connect and operate in a digitally connected world."
           />
-          <div className="mt-12">
-            <ServicesGrid limit={8} />
+          <div className="mt-14">
+            <ServicesGrid />
           </div>
           <Reveal className="mt-10 text-center">
-            <Link to="/services" className="btn-secondary">
-              View All Services
+            <Link to="/solutions" className="btn-secondary">
+              Explore Solution Details
               <FiArrowRight aria-hidden="true" />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* About */}
-      <section className="section bg-white">
-        <AboutSection />
-      </section>
+      {/* Telecom feature */}
+      <TelecomSection />
 
-      {/* Capabilities */}
-      <Capabilities />
+      {/* IT feature */}
+      <ITSection />
+
+      {/* Key features */}
+      <KeyFeatures />
 
       {/* Industries */}
-      <section className="section bg-slate-50">
+      <section className="section bg-base">
         <div className="container">
           <SectionHeading
             eyebrow="Industries"
-            title="Industries We Serve"
-            text="Communication and technology solutions tailored to the needs of a wide range of sectors."
+            title="Technology for Different Business Needs"
+            text="Communication and technology solutions tailored to the demands of a wide range of sectors."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {industries.slice(0, 6).map((industry, i) => (
               <Reveal key={industry.name} delay={(i % 3) * 70}>
                 <IndustryCard industry={industry} />
@@ -86,13 +82,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Capabilities */}
+      <Capabilities />
+
       {/* Why Sanlink */}
-      <section className="section bg-white">
+      <section className="section bg-base">
         <WhyChooseUs />
       </section>
 
       {/* Process */}
       <Process />
+
+      {/* Signature visual */}
+      <EverythingConnected />
+
+      {/* FAQ */}
+      <FAQ />
 
       <CTASection />
     </>

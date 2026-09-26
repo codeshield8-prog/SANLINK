@@ -34,9 +34,7 @@ export default function PrivacyPolicy() {
         },
         {
           heading: 'Contact Us',
-          body: [
-            `If you have any questions about this Privacy Policy, please contact us at ${company.email} or ${company.phone}.`,
-          ],
+          body: [`If you have any questions about this Privacy Policy, please contact us at ${company.email} or ${company.phone}.`],
         },
       ]}
     />

@@ -8,21 +8,9 @@ import Process from '../components/Process.jsx';
 import CTASection from '../components/CTASection.jsx';
 
 const pillars = [
-  {
-    icon: FiTarget,
-    title: 'Our Focus',
-    text: 'Delivering practical technology and communication solutions that solve real business problems and support day-to-day operations.',
-  },
-  {
-    icon: FiCompass,
-    title: 'Our Approach',
-    text: 'We start with your requirements and build reliable, scalable solutions around them — keeping things clear, maintainable and dependable.',
-  },
-  {
-    icon: FiHeart,
-    title: 'Our Commitment',
-    text: 'Responsive support and a long-term partnership mindset, so your communication and technology keep working as your business grows.',
-  },
+  { icon: FiTarget, title: 'Our Focus', text: 'Delivering practical technology and communication solutions that solve real business problems.' },
+  { icon: FiCompass, title: 'Our Approach', text: 'We start with your requirements and build reliable, scalable solutions around them.' },
+  { icon: FiHeart, title: 'Our Commitment', text: 'Responsive support and a long-term partnership mindset as your business grows.' },
 ];
 
 export default function About() {
@@ -31,30 +19,30 @@ export default function About() {
       <PageHero
         eyebrow="About Us"
         title="About Sanlink Infotech"
-        text="A technology-driven company connecting businesses through reliable telecommunication and information technology."
+        text="A technology-driven company operating at the intersection of information technology and telecommunications."
       />
 
-      <section className="section bg-white">
+      <section className="section bg-base">
         <AboutSection showCta={false} />
       </section>
 
-      <section className="section bg-slate-50">
+      <section className="section bg-base">
         <div className="container">
           <SectionHeading
             eyebrow="What Drives Us"
             title="Built Around Your Business"
             text="Three principles guide how we work with every organisation we partner with."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {pillars.map((pillar, i) => {
               const Icon = pillar.icon;
               return (
-                <Reveal as="article" key={pillar.title} delay={i * 90} className="rounded-xl border border-slate-200 bg-white p-7 shadow-soft">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-navy-900 text-white">
+                <Reveal as="article" key={pillar.title} delay={i * 90} className="card p-7">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 text-white">
                     <Icon className="text-xl" />
                   </span>
-                  <h3 className="mt-5 text-lg font-bold text-navy-900">{pillar.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{pillar.text}</p>
+                  <h3 className="mt-5 text-lg font-bold text-white">{pillar.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{pillar.text}</p>
                 </Reveal>
               );
             })}

@@ -9,11 +9,12 @@ export default function Industries() {
     <>
       <PageHero
         eyebrow="Industries"
-        title="Industries We Serve"
+        title="Technology for Different Business Needs"
         text="From startups to enterprises, we deliver communication and technology solutions tailored to the demands of each sector."
+        breadcrumb="Industries"
       />
 
-      <section className="section bg-white">
+      <section className="section bg-base">
         <div className="container">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {industries.map((industry, i) => (
